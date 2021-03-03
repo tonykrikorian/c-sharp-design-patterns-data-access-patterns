@@ -22,6 +22,19 @@ namespace MyShop.Infrastructure.Repositories
 
         }
 
+        public override Order Update(Order entity)
+        {
+            var order = _context.Orders
+                .Include(l => l.LineItems)
+                .ThenInclude(lineItem => lineItem.Product)
+                .Single(o=>o.OrderId == entity.OrderId);
+
+                order.OrderDate = entity.OrderDate;
+                order.LineItems = entity.LineItems;
+
+            return base.Update(order);
+        }
+
         
     }
 }
