@@ -21,19 +21,9 @@ namespace MyShop.Infrastructure.Repositories
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
         public T Get(Guid Id)
         {
             throw new System.NotImplementedException();
-        }
-
-        public T Get(Guid Id)
-        {
-            throw new NotImplementedException();
         }
 
         public void SaveChanges()
