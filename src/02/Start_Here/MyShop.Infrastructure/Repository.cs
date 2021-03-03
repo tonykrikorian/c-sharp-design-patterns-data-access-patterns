@@ -1,29 +1,36 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-
+using System.Linq;
 namespace MyShop.Infrastructure.Repositories
 {
     public abstract class GenericRepository<T> : IRepository<T> where T : class
     {
+        protected ShoppingContext _context;
+
+        public GenericRepository(ShoppingContext context)
+        {
+            _context = context;
+        }
+
         public T Add(T entity)
         {
-            throw new System.NotImplementedException();
+            return _context.Add(entity).Entity;
         }
 
         public IEnumerable<T> All()
         {
-            throw new System.NotImplementedException();
+            return _context.Set<T>().ToList();
         }
 
         public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
         {
-            throw new System.NotImplementedException();
+            return _context.Set<T>().AsQueryable().Where(predicate).ToList();
         }
 
         public T Get(Guid Id)
         {
-            throw new System.NotImplementedException();
+            return _context.Find<T>(Id);
         }
 
         public void SaveChanges()
@@ -33,7 +40,7 @@ namespace MyShop.Infrastructure.Repositories
 
         public T Update(T entity)
         {
-            throw new System.NotImplementedException();
+            return _context.Update<T>(entity).Entity;
         }
     }
 }
