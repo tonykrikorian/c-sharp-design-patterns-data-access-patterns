@@ -23,7 +23,7 @@ namespace MyShop.Infrastructure.Repositories
             return _context.Set<T>().ToList();
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
+        public virtual IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
         {
             return _context.Set<T>().AsQueryable().Where(predicate).ToList();
         }
@@ -35,10 +35,10 @@ namespace MyShop.Infrastructure.Repositories
 
         public void SaveChanges()
         {
-            throw new System.NotImplementedException();
+            _context.SaveChanges();
         }
 
-        public T Update(T entity)
+        public virtual T Update(T entity)
         {
             return _context.Update<T>(entity).Entity;
         }
