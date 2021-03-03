@@ -6,7 +6,7 @@ namespace MyShop.Infrastructure.Repositories
         T Update(T entity);
         T Get(Guid Id);
         IEnumerable<T> All();
-        IEnumerable<T> Find(Expresssion<Func<T,bool>> predicate)
+        IEnumerable<T> Find(Expresssion<Func<T,bool>> predicate);
         void SaveChanges();
     }
 }
